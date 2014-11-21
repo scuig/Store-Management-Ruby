@@ -1,0 +1,5 @@
+class AddSaltToUsers < ActiveRecord::Migration
+  def change_table :users do |t|
+	t.decimal :salt
+  end
+end

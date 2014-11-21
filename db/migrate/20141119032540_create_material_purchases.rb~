@@ -1,0 +1,11 @@
+class CreateMaterialPurchases < ActiveRecord::Migration
+  def change
+    create_table :material_purchases do |t|
+      t.integer :units
+      t.date :exp_date
+      t.decimal :amount
+
+      t.timestamps
+    end
+  end
+end

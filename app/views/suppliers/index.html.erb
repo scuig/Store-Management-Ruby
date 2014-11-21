@@ -1,0 +1,31 @@
+<h1>Proveedores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Correo</th>
+      <th>Teléfono</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @suppliers.each do |supplier| %>
+      <tr>
+        <td><%= supplier.name %></td>
+        <td><%= supplier.address %></td>
+        <td><%= supplier.email %></td>
+        <td><%= supplier.phone %></td>
+        <td><%= link_to 'Mostrar', supplier %></td> &nbsp
+        <td><%= link_to 'Editar', edit_supplier_path(supplier) %></td>
+        <td><%= link_to 'Borrar', supplier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo', new_supplier_path %>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verde Pera</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header></header>
+<navigation><div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-toggle"></span>
+      </button>
+      <a class="navbar-brand" href="#">Verde Pera</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <i class="glyphicon glyphicon-user"></i> <%= session[:username] %> <span class="caret"></span></a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a href="/logout"><i class="glyphicon glyphicon-lock"></i> Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div></navigation>
+
+
+<div class="container">
+  
+  <!-- upper section -->
+  <div class="row">
+	<div class="col-sm-3">
+      <!-- left -->
+      <h3><i class="glyphicon glyphicon-briefcase"></i> Menú</h3>
+      <hr>
+      
+      <ul class="nav nav-stacked">
+        <li><a href="/materials"><i class="glyphicon glyphicon-flash"></i> Inventario</a></li>
+        <li><a href="/suppliers"><i class="glyphicon glyphicon-link"></i> Proveedores</a></li>
+        <li><a href="/products"><i class="glyphicon glyphicon-list-alt"></i> Productos</a></li>
+        <li><a href="/clients"><i class="glyphicon glyphicon-book"></i> Clientes</a></li>
+        <li><a href="/categories"><i class="glyphicon glyphicon-briefcase"></i> Categorías</a></li>
+        <li><a href="/sales"><i class="glyphicon glyphicon-time"></i> Venta</a></li>
+        <li><a href="/purchases"><i class="glyphicon glyphicon-plus"></i> Compra</a></li>
+      </ul>
+      
+      <hr>
+      
+  	</div><!-- /span-3 -->
+    <div class="col-sm-9">
+      	
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+         	<div class="col-md-7">
+
+<div id='content'>
+	<%= yield %>
+</div>
+
+</body>
+</html>

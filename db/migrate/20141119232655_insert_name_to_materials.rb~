@@ -1,0 +1,4 @@
+class InsertNameToMaterials < ActiveRecord::Migration
+  def change
+  end
+end

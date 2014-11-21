@@ -1,0 +1,29 @@
+<h1>Listing material_purchases</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Units</th>
+      <th>Exp date</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @material_purchases.each do |material_purchase| %>
+      <tr>
+        <td><%= material_purchase.units %></td>
+        <td><%= material_purchase.exp_date %></td>
+        <td><%= material_purchase.amount %></td>
+        <td><%= link_to 'Show', material_purchase %></td>
+        <td><%= link_to 'Edit', edit_material_purchase_path(material_purchase) %></td>
+        <td><%= link_to 'Destroy', material_purchase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Material purchase', new_material_purchase_path %>

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @material.name %>
+</p>
+
+<p>
+  <strong>Disponible:</strong>
+  <%= @material.available %>
+  <%= @material.unit.name %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_material_path(@material) %> |
+<%= link_to 'Back', materials_path %>

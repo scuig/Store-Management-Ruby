@@ -1,0 +1,5 @@
+class User < ActiveRecord::Base
+	has_many :sales, dependent: :destroy
+	has_many :purchases
+		devise :database_authenticatable, :registrable, :recoverable, :rememberable, :trackable, :validatable
+end

@@ -1,0 +1,5 @@
+.nested-fields.product-sale-fields
+  #product_from_list 
+  = f.association :product, collection: Product.order(:name), prompt: 'Elegir producto existente'
+  = link_to_add_association 'or create a new product', f, :product
+  = link_to_remove_association "remove product", f

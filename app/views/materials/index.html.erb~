@@ -1,0 +1,45 @@
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre:</th>
+      <th>Disponible:</th>
+      <th>Unidades:</th>
+      <th>Hacer:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.name %></td>
+        <td><%= material.available %></td>
+        <td><%= material.unit.abbr %></td>
+        <td><%= link_to 'Show', material %></td>
+        <td><%= link_to 'Edit', edit_material_path(material) %></td>
+        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+<%= link_to 'Nuevo', new_material_path %>
+
+<p>
+<p>
+
+
+
+Para descargar un archivo CSV, por favor agregue la extensión .csv a la dirección actual.
+
+<p><p>
+
+<%= image_tag "assets/test.png" %>
+
+
