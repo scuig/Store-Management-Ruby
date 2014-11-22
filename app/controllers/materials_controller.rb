@@ -13,15 +13,27 @@ class MaterialsController < ApplicationController
     end
 
   g = Gruff::Bar.new
+
+  first = Material.find(1)
+  firstname = first.read_attribute 'name'
+  first = first.read_attribute 'available'
+  first = first.to_int()
+
+  second = Material.find(2)
+  secondname = second.read_attribute 'name'
+  second = second.read_attribute 'available'
+  second = second.to_int()
+
   g.title = "Inventario"
-  g.data 'Limones', [5]
-  g.data 'Hamburgers', [50]
+  g.data firstname, [first]
+  g.data secondname, [second]
   g.marker_count = 1
+  g.minimum_value = 0
   g.write('app/assets/images/test.png')
 
   end
 
-  # GET /materials/1
+  # GET /materials/1s
   # GET /materials/1.json
   def show
     
