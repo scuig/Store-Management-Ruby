@@ -15,10 +15,21 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @product.product_categories.build
+    @product.categories.build
+
+    @product.product_materials.build
+    @product.materials.build
   end
 
   # GET /products/1/edit
   def edit
+    @product= Product.find(params[:id])
+    @product.product_materials.build
+    @product.materials.build
+    @product.product_categories.build
+    @product.categories.build
+  
   end
 
   # POST /products
@@ -69,6 +80,12 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :description)
+      params.require(:product).permit(
+        :name, :price, :description,
+        product_categories_attributes: [:category_id, :_destroy,
+          categories_attributes: [:id, :name]],
+        product_materials_attributes: [:material_id, :units, :_destroy,
+          materials_attributes: [:id, :name, :available]]
+        )
     end
 end
