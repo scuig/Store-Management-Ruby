@@ -12,7 +12,7 @@ class MaterialsController < ApplicationController
       format.csv { send_data @materials.to_csv }
     end
 
-  g = Gruff::Bar.new
+  g = Gruff::Bar.new('500x300')
 
   first = Material.find(1)
   firstname = first.read_attribute 'name'
