@@ -12,18 +12,18 @@
   <% end %>
 
  <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, 'Nombre' %><br>
     <%= f.text_field :name %>
  </div> 
  <div class="field">
-    <%= f.label :available %><br>
+    <%= f.label :available, 'Disponibilidad' %><br>
     <%= f.text_field :available %>
   </div>
   <div class="field">
-    <%= f.label :unit_id %><br>
+    <%= f.label :unit_id, 'Unidad' %><br>
     <%= f.collection_select :unit_id, Unit.all, :id, :name, prompt: true %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Actualizar' %>
   </div>
 <% end %>
