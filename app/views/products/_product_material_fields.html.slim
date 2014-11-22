@@ -1,0 +1,5 @@
+.nested-fields.product-material-fields
+  #product_from_list 
+  = f.association :material, label: "Producto existente",  label_method: :name, value_method: :id
+  = f.input :units
+  = link_to_remove_association "Borrar producto de venta", f

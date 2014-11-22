@@ -1,0 +1,5 @@
+.nested-fields.product-category-fields
+  #product_from_list 
+  = f.association :category, label: "Categoría existente",  label_method: :name, value_method: :id
+
+  = link_to_remove_association "Borrar producto de venta", f

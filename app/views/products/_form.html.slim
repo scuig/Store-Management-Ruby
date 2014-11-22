@@ -1,0 +1,26 @@
+= simple_form_for @product, html: {class: 'form-horizontal'} do |f|
+  = f.input :name, :label => 'Nombre:'
+  = f.input :price, :label => 'Precio'
+  = f.input :description, :label => 'Descripción'
+
+  ul.nav.nav-tabs role='tablist'
+
+    li
+      = link_to 'Category', '#categories', data: {toggle: 'tab'}
+    li
+      = link_to 'Materials', '#materials', data: {toggle: 'tab'}
+
+  .tab-content
+   
+    #categories.tab-pane role='tabpanel'
+      = f.simple_fields_for :product_categories do |product_category|
+        = render 'product_category_fields', :f => product_category
+      = link_to_add_association 'Agregar Categoría', f, :product_categories
+
+    #materials.tab-pane role='tabpanel'
+      = f.simple_fields_for :product_materials do |product_material|
+        = render 'product_material_fields', :f => product_material
+	    = link_to_add_association 'Agregar producto', f, :product_materials
+
+  .actions
+    = f.button :submit, :disable_with => 'Espere un momento ...'
