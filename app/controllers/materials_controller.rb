@@ -24,11 +24,22 @@ class MaterialsController < ApplicationController
   second = second.read_attribute 'available'
   second = second.to_int()
 
+  third = Material.find(3)
+  thirdname = third.read_attribute 'name'
+  third = third.read_attribute 'available'
+  third = third.to_int()
+
   g.title = "Inventario"
   g.data firstname, [first]
   g.data secondname, [second]
+  g.data thirdname, [third]
   g.marker_count = 1
   g.minimum_value = 0
+  g.theme = {
+  :colors => %w(#B7B43F #DAA520 #5F9EA0),
+  :marker_color => 'grey',
+  :background_colors => ['white', 'white', :top_bottom]
+}
   g.write('app/assets/images/test.png')
 
   end
