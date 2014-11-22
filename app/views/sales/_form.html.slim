@@ -13,13 +13,12 @@
     #client.tab-pane role='tabpanel'
       #client_from_list
         = f.association :client, collection: Client.order(:name), prompt: 'Elegir cliente existente'
-      = link_to_add_association 'agregar nuevo cliente', f, :client
+      = link_to_add_association 'Agregar Nuevo', f, :client
 
     #products.tab-pane role='tabpanel'
       = f.simple_fields_for :product_sales do |product_sale|
         = render 'product_sale_fields', :f => product_sale
-
-	= link_to_add_association 'Agregar producto a venta', f, :product_sales
+	    = link_to_add_association 'Agregar producto', f, :product_sales
 
   .actions
     = f.button :submit, :disable_with => 'Espere un momento ...'

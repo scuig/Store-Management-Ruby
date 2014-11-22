@@ -1,4 +1,5 @@
 .nested-fields.product-sale-fields
   #product_from_list 
-  = f.association :product, collection: Product.order(:name), prompt: 'Elegir producto'
+  = f.association :product, label: "Producto existente",  label_method: :name, value_method: :id
+  = f.input :cantidad
   = link_to_remove_association "Borrar producto de venta", f

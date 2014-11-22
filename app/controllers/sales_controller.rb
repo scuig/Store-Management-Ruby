@@ -15,10 +15,15 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+    @sale.product_sales.build
+    @sale.products.build
   end
 
   # GET /sales/1/edit
   def edit
+    @sale= Sale.find(params[:id])
+    @sale.product_sales.build
+    @sale.products.build
   end
 
   # POST /sales
@@ -69,6 +74,10 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:saleDate, :client_id, :user_id)
+      params.require(:sale).permit(
+        :id, :saleDate, :client_id, :user_id, 
+        product_sales_attributes: [:product_id, :cantidad, :_destroy,
+          products_attributes: [:id, :name, :price] ] 
+      )
     end
 end
