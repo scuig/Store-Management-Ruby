@@ -12,12 +12,12 @@ class MaterialsController < ApplicationController
       format.csv { send_data @materials.to_csv }
     end
 
-g = Gruff::Line.new
-  g.title = "Materiales"
-  g.data 'Fries', [20, 23, 19, 8]
-  g.data 'Hamburgers', [50, 19, 99, 29]
- g.marker_count = 1
-  g.write('app/assets/test.png')
+  g = Gruff::Bar.new
+  g.title = "Inventario"
+  g.data 'Limones', [5]
+  g.data 'Hamburgers', [50]
+  g.marker_count = 1
+  g.write('app/assets/images/test.png')
 
   end
 
