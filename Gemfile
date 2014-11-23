@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'rmagick'
 gem 'gruff'
 gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

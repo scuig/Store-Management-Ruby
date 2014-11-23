@@ -11,6 +11,7 @@ def index
 	end
 end
 
+
 def login
 	@username = params[:username]
 	@password = params[:password]
