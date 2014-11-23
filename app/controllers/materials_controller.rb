@@ -10,7 +10,7 @@ class MaterialsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @materials.to_csv }
-      format.pdf { send_data @materials.to_pdf }
+
     end
 
     g = Gruff::Bar.new('500x300')
@@ -59,6 +59,19 @@ class MaterialsController < ApplicationController
   end
 
   def pdf
+
+      # Load the html to convert to PDF
+    html = File.read("app/views/materials/index.html.erb")
+    # Create a new kit and define page size to be US letter
+    kit = PDFKit.new(html, :page_size => 'Letter')
+    # Load our stylesheet into the kit to have colors & formatting
+    kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/bootstrap.min.css"
+    # Save the html to a PDF file
+    kit.to_file("app/assets/materials")
+    # Render the html
+
+
+   send_file 'app/assets/materials.pdf', :type=>"application/pdf", :x_sendfile=>true
 
 
 
