@@ -15,12 +15,9 @@ class MaterialsController < ApplicationController
 
     g = Gruff::Bar.new('500x300')
 
-<<<<<<< HEAD
 
-  lista = Material.order("available ASC")
-=======
     lista = Material.order("available ASC")
->>>>>>> FETCH_HEAD
+
 
     first = lista[0]
     firstname = first.read_attribute 'name'
@@ -57,11 +54,9 @@ class MaterialsController < ApplicationController
       :colors => %w(#D65433 #DAA520 #B7B43F #5F9EA0),
       :marker_color => 'grey',
       :background_colors => ['white', 'white', :top_bottom]
-<<<<<<< HEAD
+
       }
-=======
-    }
->>>>>>> FETCH_HEAD
+
     g.write('app/assets/images/test.png')
 
   end
