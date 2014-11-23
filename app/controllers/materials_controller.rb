@@ -48,11 +48,11 @@ class MaterialsController < ApplicationController
     g.marker_count = 1
     g.minimum_value = 0
     g.theme = {
-    :colors => %w(#D65433 #DAA520 #B7B43F #5F9EA0),
-    :marker_color => 'grey',
-    :background_colors => ['white', 'white', :top_bottom]
-  }
-  g.write('app/assets/images/test.png')
+      :colors => %w(#D65433 #DAA520 #B7B43F #5F9EA0),
+      :marker_color => 'grey',
+      :background_colors => ['white', 'white', :top_bottom]
+    }
+    g.write('app/assets/images/test.png')
 
   end
 
