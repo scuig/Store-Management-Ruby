@@ -1,0 +1,26 @@
+
+= simple_form_for @purchase, html: {class: 'form-horizontal'} do |f|
+  = f.input :purchase_date, :hint => 'Fecha de creacion'
+
+  ul.nav.nav-tabs role='tablist'
+
+    li
+      = link_to 'supplier', '#supplier', data: {toggle: 'tab'}
+    li
+      = link_to 'Products', '#products', data: {toggle: 'tab'}
+
+  .tab-content
+   
+    #supplier.tab-pane role='tabpanel'
+      #supplier_from_list
+        = f.association :supplier, collection: supplier.order(:name), prompt: 'Elegir cliente existente'
+      = link_to_add_association 'Agregar Nuevo', f, :supplier
+
+    #products.tab-pane role='tabpanel'
+      = f.simple_fields_for :material_purchases do |material_purchase|
+        = render 'material_purchase_fields', :f => material_purchase
+      = link_to_add_association 'Agregar material', f, :material_purchases
+
+  .actions
+    = f.button :submit, :disable_with => 'Espere un momento ...'
+

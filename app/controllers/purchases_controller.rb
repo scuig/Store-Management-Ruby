@@ -15,10 +15,15 @@ class PurchasesController < ApplicationController
   # GET /purchases/new
   def new
     @purchase = Purchase.new
+    @purchase.material_purchases.build
+    @purchase.materials.build
   end
 
   # GET /purchases/1/edit
   def edit
+    @purchase= Purchase.find(params[:id])
+    @purchase.material_purchases.build
+    @purchase.materials.build
   end
 
   # POST /purchases
@@ -69,6 +74,9 @@ class PurchasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
-      params.require(:purchase).permit(:purchase_date)
+      params.require(:purchase).permit(:purchase_date, :id,
+        material_purchases_attributes: [:material_id, :units, :exp_date, :amount,
+          materials_attributes: [:available, :unit_id,
+              units_attributes: [:name, :abbr]]])
     end
 end
