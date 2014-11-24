@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<h2>Cliente #<%= @client.id %></h2>
 
 <p>
   <strong>Nombre:</strong>
@@ -9,6 +10,20 @@
   <strong>Dirección:</strong>
   <%= @client.address %>
 </p>
+<h3>Compras por el Cliente</h3>
+<% @client.sales.each do |c_sale| %>
+	<p>
+	<strong>Fecha de venta: </strong>
+	<%=
+	c_sale.saleDate %>
+	</p>
+
+	<p>
+	<strong>Total: </strong> $
+	<%=
+	total = Sale.select("sales.id, sum(products.price*product_sales.cantidad) as total_price").joins(:product_sales, :products).where("product_sales.sale_id = ?", c_sale.id).group("sales.id").first.read_attribute("total_price") %>
+	</p>
+<% end %>
 
 <%= link_to 'Editar', edit_client_path(@client) %> |
 <%= link_to 'Atrás', clients_path %>

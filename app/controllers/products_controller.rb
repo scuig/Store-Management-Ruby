@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.product_categories.build
     @product.categories.build
-
     @product.product_materials.build
     @product.materials.build
   end
@@ -39,9 +38,9 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    
+    @product = Product.new(product_params)   
     @nombre = 'Nuevo producto'
-    @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'El producto fue creado correctamente.' }
@@ -91,7 +90,7 @@ class ProductsController < ApplicationController
         product_categories_attributes: [:category_id, :_destroy,
           categories_attributes: [:id, :name]],
         product_materials_attributes: [:material_id, :units, :_destroy,
-          materials_attributes: [:id, :name, :available]]
+          materials_attributes: [:id, :name]]
         )
     end
 end

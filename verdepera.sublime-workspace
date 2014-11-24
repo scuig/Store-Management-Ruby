@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"total",
+				"total_price"
+			],
+			[
 				"purch",
 				"purchase"
 			],
@@ -56,34 +60,32 @@
 	"buffers":
 	[
 		{
-			"file": "app/views/purchases/_material_purchase_fields.html.slim",
-			"settings":
-			{
-				"buffer_size": 283,
-				"line_ending": "Unix"
-			}
-		},
-		{
+			"contents": "class SalesController < ApplicationController\n  before_action :set_sale, only: [:show, :edit, :update, :destroy]\n\n  # GET /sales\n  # GET /sales.json\n  def index\n    @sales = Sale.all\n\n    @total = \n  end\n\n  # GET /sales/1\n  # GET /sales/1.json\n  def show\n  end\n\n  # GET /sales/new\n  def new\n    @sale = Sale.new\n    @sale.product_sales.build\n    @sale.products.build\n  end\n\n  # GET /sales/1/edit\n  def edit\n    @sale= Sale.find(params[:id])\n    @sale.product_sales.build\n    @sale.products.build\n  end\n\n  # POST /sales\n  # POST /sales.json\n  def create\n    @sale = Sale.new(sale_params)\n\n    respond_to do |format|\n      if @sale.save\n        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }\n        format.json { render :show, status: :created, location: @sale }\n      else\n        format.html { render :new }\n        format.json { render json: @sale.errors, status: :unprocessable_entity }\n      end\n    end\n  end\n\n  # PATCH/PUT /sales/1\n  # PATCH/PUT /sales/1.json\n  def update\n    respond_to do |format|\n      if @sale.update(sale_params)\n        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }\n        format.json { render :show, status: :ok, location: @sale }\n      else\n        format.html { render :edit }\n        format.json { render json: @sale.errors, status: :unprocessable_entity }\n      end\n    end\n  end\n\n  # DELETE /sales/1\n  # DELETE /sales/1.json\n  def destroy\n    @sale.destroy\n    respond_to do |format|\n      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }\n      format.json { head :no_content }\n    end\n  end\n\n  private\n    # Use callbacks to share common setup or constraints between actions.\n    def set_sale\n      @sale = Sale.find(params[:id])\n    end\n\n    # Never trust parameters from the scary internet, only allow the white list through.\n    def sale_params\n      params.require(:sale).permit(\n        :id, :saleDate, :client_id, :user_id, \n        product_sales_attributes: [:product_id, :cantidad, :_destroy,\n          products_attributes: [:id, :name, :price] ] \n      )\n    end\nend\n",
 			"file": "app/controllers/sales_controller.rb",
+			"file_size": 2090,
+			"file_write_time": 130611451484300973,
 			"settings":
 			{
-				"buffer_size": 2090,
+				"buffer_size": 2105,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/purchases/_form.html.slim",
+			"contents": "\n\n<table>\n  <thead>\n    <tr>\n      <th>Fecha de venta</th>\n      <th> Cliente</th>\n      <th> Total</th>\n      <th colspan=\"3\"></th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <% @sales.each do |sale| %>\n      <tr>\n        <td><%= sale.saleDate %></td>\n        <td><%= sale.client.name %></td>\n        <td><%= \n          @total = Product.select(\"sales.id, sum(products.price) as total_price\").joins(:product_sales, :sales).where(\"product_sales.sale_id = ?\", sale.id).group(\"sales.id\")\n          puts @total\n          \n         %></td>\n        <td><%= link_to 'Detalles', sale %></td>\n        <td><%= link_to 'Editar', edit_sale_path(sale) %></td>\n        <td><%= link_to 'Eliminar', sale, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>\n      </tr>\n    <% end %>\n  </tbody>\n</table>\n\n<br>\n\n<%= link_to 'Nueva venta', new_sale_path %>\n",
+			"file": "app/views/sales/index.html.erb",
+			"file_size": 853,
+			"file_write_time": 130612768966873505,
 			"settings":
 			{
-				"buffer_size": 887,
+				"buffer_size": 840,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/sales/_form.html.slim",
+			"file": "app/controllers/purchases_controller.rb",
 			"settings":
 			{
-				"buffer_size": 838,
+				"buffer_size": 2344,
 				"line_ending": "Unix"
 			}
 		}
@@ -118,6 +120,7 @@
 		"/home/scuig/projs",
 		"/home/scuig/projs/app",
 		"/home/scuig/projs/app/controllers",
+		"/home/scuig/projs/app/models",
 		"/home/scuig/projs/app/views",
 		"/home/scuig/projs/app/views/purchases",
 		"/home/scuig/projs/app/views/sales",
@@ -126,6 +129,10 @@
 	],
 	"file_history":
 	[
+		"/home/scuig/projs/app/models/supplier.rb",
+		"/home/scuig/projs/app/views/purchases/_form.html.slim",
+		"/home/scuig/projs/app/views/purchases/_supplier_fields.html.slim",
+		"/home/scuig/projs/app/views/purchases/_material_purchase_fields.html.slim",
 		"/home/scuig/projs/app/views/purchases/index.json.jbuilder",
 		"/home/scuig/projs/app/views/sales/_form.html.slim",
 		"/home/scuig/projs/app/views/sales/index.html.erb",
@@ -134,7 +141,6 @@
 		"/home/scuig/projs/app/models/purchase.rb",
 		"/home/scuig/projs/app/controllers/purchases_controller.rb",
 		"/home/scuig/projs/app/controllers/materials_controller.rb",
-		"/home/scuig/projs/app/views/purchases/_form.html.slim",
 		"/home/scuig/projs/db/migrate/20141123193231_rename_materials_purchases.rb",
 		"/home/scuig/projs/db/migrate/20141122192943_change_format_in_product_materials.rb",
 		"/home/scuig/projs/app/views/products/_product_category_fields.html.slim",
@@ -190,112 +196,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/views/purchases/_material_purchase_fields.html.slim",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 283,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15,
-								15
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/controllers/sales_controller.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2090,
+						"buffer_size": 2105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 187.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/purchases/_form.html.slim",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 887,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								194,
-								194
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/sales/_form.html.slim",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 838,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								197,
+								197
 							]
 						],
 						"settings":
@@ -309,6 +227,66 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/sales/index.html.erb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 840,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								499,
+								499
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 73.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/controllers/purchases_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2344,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2146,
+								2146
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 877.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
