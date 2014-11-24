@@ -5,15 +5,18 @@ class PurchasesController < ApplicationController
   # GET /purchases.json
   def index
     @purchases = Purchase.all
+    @nombre = 'Compras'
   end
 
   # GET /purchases/1
   # GET /purchases/1.json
   def show
+    @nombre = 'Detalles de la compra'
   end
 
   # GET /purchases/new
   def new
+    @nombre = 'Nueva compra'
     @purchase = Purchase.new
     @purchase.material_purchases.build
     @purchase.materials.build
@@ -21,6 +24,7 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/1/edit
   def edit
+    @nombre = 'Editar compra'
     @purchase= Purchase.find(params[:id])
     @purchase.material_purchases.build
     @purchase.materials.build
@@ -29,6 +33,7 @@ class PurchasesController < ApplicationController
   # POST /purchases
   # POST /purchases.json
   def create
+    @nombre = 'Nueva compra'
     @purchase = Purchase.new(purchase_params)
 
     respond_to do |format|
@@ -45,6 +50,7 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   # PATCH/PUT /purchases/1.json
   def update
+    @nombre = 'Editar compra'
     respond_to do |format|
       if @purchase.update(purchase_params)
         format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
@@ -59,6 +65,7 @@ class PurchasesController < ApplicationController
   # DELETE /purchases/1
   # DELETE /purchases/1.json
   def destroy
+    @nombre = 'Eliminar compra'
     @purchase.destroy
     respond_to do |format|
       format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
