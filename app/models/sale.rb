@@ -1,5 +1,16 @@
 class Sale < ActiveRecord::Base
 	
+	after_validation :checar_tablas
+
+	def checar_tablas
+
+
+
+
+
+	end
+
+
 	belongs_to :client
 	belongs_to :user
 	

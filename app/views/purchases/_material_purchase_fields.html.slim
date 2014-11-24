@@ -1,7 +1,7 @@
 .nested-fields.material-purchase-fields
   #material_from_list 
   = f.association :material, label: "Producto existente",  label_method: :name, value_method: :id
-  = f.input :units, label: "Unidades"
+  = f.input :units, label: "Cantidad"
   = f.input :exp_date, label: "Fecha de caducidad"
-  = f.input :amount, label: "Cantidad"
+  = f.input :amount, label: "Monto $"
   = link_to_remove_association "Borrar producto de venta", f
