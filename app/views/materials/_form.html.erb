@@ -4,8 +4,10 @@
       <h2> No se permitió la captura del elemento por <%= pluralize(@material.errors.count, "error") %> </h2>
 
       <ul>
-      <% @material.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+       <%@material.errors.messages.values.each do |msg| %>
+        <%msg.each do  |m| %>
+          <li><%= m %></li>
+        <%end %>
       <% end %>
       </ul>
     </div>
