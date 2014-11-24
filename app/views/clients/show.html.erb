@@ -10,6 +10,10 @@
   <strong>Dirección:</strong>
   <%= @client.address %>
 </p>
+<p>
+	<strong>Total gastado: $ </strong>
+	<%= totals = Client.select("clients.id, sum(products.price*product_sales.cantidad) as total_spent").joins(sales: [product_sales: :product]).where("sales.client_id = ?", @client.id).group("clients.id").first.read_attribute("total_spent") %>
+	</p>
 <h3>Compras por el Cliente</h3>
 <% @client.sales.each do |c_sale| %>
 	<p>
@@ -20,8 +24,7 @@
 
 	<p>
 	<strong>Total: </strong> $
-	<%=
-	total = Sale.select("sales.id, sum(products.price*product_sales.cantidad) as total_price").joins(:product_sales, :products).where("product_sales.sale_id = ?", c_sale.id).group("sales.id").first.read_attribute("total_price") %>
+	<%= total = Sale.select("sales.id, sum(products.price*product_sales.cantidad) as total_price").joins(:product_sales, :products).where("product_sales.sale_id = ?", c_sale.id).group("sales.id").first.read_attribute("total_price") %>
 	</p>
 <% end %>
 
