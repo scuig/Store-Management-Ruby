@@ -5,6 +5,7 @@ class MaterialsController < ApplicationController
   # GET /materials.json
   def index
     @materials = Material.all
+    @nombre = 'Inventario'
 
     @materials = Material.order(:name)
     respond_to do |format|
@@ -18,6 +19,7 @@ class MaterialsController < ApplicationController
 
     lista = Material.order("available ASC")
 
+    if (lista[3] != nil) 
 
     first = lista[0]
     firstname = first.read_attribute 'name'
@@ -43,7 +45,7 @@ class MaterialsController < ApplicationController
     fourth = fourth.read_attribute 'available'
     fourth = fourth.to_int()
 
-    g.title = "Inventario"
+    
     g.data firstname, [first]
     g.data secondname, [second]
     g.data thirdname, [third]
@@ -58,6 +60,11 @@ class MaterialsController < ApplicationController
       }
 
     g.write('app/assets/images/test.png')
+
+  else
+
+
+  end
 
   end
 
@@ -83,21 +90,25 @@ end
   # GET /materials/1s
   # GET /materials/1.json
   def show
+    @nombre = 'Detalles del elemento'
     
   end
 
   # GET /materials/new
   def new
     @material = Material.new
+    @nombre = 'Nuevo elemento'
   end
 
   # GET /materials/1/edit
   def edit
+    @nombre = 'Editar elemento'
   end
 
   # POST /materials
   # POST /materials.json
   def create
+    @nombre = 'Nuevo elemento'
     @material = Material.new(material_params)
 
     respond_to do |format|
@@ -114,6 +125,7 @@ end
   # PATCH/PUT /materials/1
   # PATCH/PUT /materials/1.json
   def update
+    @nombre = 'Editar elemento'
     respond_to do |format|
       if @material.update(material_params)
         format.html { redirect_to @material, notice: 'El inventario ha sido actualizado.' }
@@ -128,6 +140,7 @@ end
   # DELETE /materials/1
   # DELETE /materials/1.json
   def destroy
+    @nombre = 'Eliminar elemento'
     @material.destroy
     respond_to do |format|
       format.html { redirect_to materials_url, notice: 'El elemento ha sido eliminado correctamente.' }

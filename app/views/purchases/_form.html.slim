@@ -1,19 +1,19 @@
 
 = simple_form_for @purchase, html: {class: 'form-horizontal'} do |f|
-  = f.input :purchase_date, :hint => 'Fecha de creacion'
+  = f.input :purchase_date, label: 'Fecha de compra '
 
   ul.nav.nav-tabs role='tablist'
 
     li
-      = link_to 'supplier', '#supplier', data: {toggle: 'tab'}
+      = link_to 'Proveedor', '#supplier', data: {toggle: 'tab'}
     li
-      = link_to 'Products', '#products', data: {toggle: 'tab'}
+      = link_to 'Productos', '#products', data: {toggle: 'tab'}
 
   .tab-content
    
     #supplier.tab-pane role='tabpanel'
       #supplier_from_list
-        = f.association :supplier, collection: Supplier.order(:name), prompt: 'Elegir cliente existente'
+        = f.association :supplier, label: 'Proveedor', collection: Supplier.order(:name), prompt: 'Elegir existente'
       = link_to_add_association 'Agregar Nuevo', f, :supplier
 
     #products.tab-pane role='tabpanel'
@@ -22,5 +22,5 @@
       = link_to_add_association 'Agregar material', f, :material_purchases
 
   .actions
-    = f.button :submit, :disable_with => 'Espere un momento ...'
+    = f.button :submit, "Finalizar compra", :disable_with => 'Espere un momento ...'
 

@@ -6,9 +6,9 @@
   ul.nav.nav-tabs role='tablist'
 
     li
-      = link_to 'Category', '#categories', data: {toggle: 'tab'}
+      = link_to 'Categoría', '#categories', data: {toggle: 'tab'}
     li
-      = link_to 'Materials', '#materials', data: {toggle: 'tab'}
+      = link_to 'Ingredientes', '#materials', data: {toggle: 'tab'}
 
   .tab-content
    
@@ -23,4 +23,4 @@
 	    = link_to_add_association 'Agregar producto', f, :product_materials
 
   .actions
-    = f.button :submit, :disable_with => 'Espere un momento ...'
+    = f.button :submit, 'Crear producto', :disable_with => 'Espere un momento ...'

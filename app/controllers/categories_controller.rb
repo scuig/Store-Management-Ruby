@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    @nombre = 'Categorías'
     @categories = Category.all
   end
 

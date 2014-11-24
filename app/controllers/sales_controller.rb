@@ -5,11 +5,13 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     @sales = Sale.all
+    @nombre = 'Ventas'
   end
 
   # GET /sales/1
   # GET /sales/1.json
   def show
+    @nombre = 'Detalles de la venta'
   end
 
   # GET /sales/new
@@ -17,6 +19,7 @@ class SalesController < ApplicationController
     @sale = Sale.new
     @sale.product_sales.build
     @sale.products.build
+    @nombre = 'Nueva venta'
   end
 
   # GET /sales/1/edit
@@ -24,16 +27,18 @@ class SalesController < ApplicationController
     @sale= Sale.find(params[:id])
     @sale.product_sales.build
     @sale.products.build
+    @nombre = 'Editar venta'
   end
 
   # POST /sales
   # POST /sales.json
   def create
+    @nombre = 'Nueva venta'
     @sale = Sale.new(sale_params)
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to @sale, notice: 'Venta creada satisfactoriamente.' }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -45,9 +50,10 @@ class SalesController < ApplicationController
   # PATCH/PUT /sales/1
   # PATCH/PUT /sales/1.json
   def update
+    @nombre = 'Editar venta'
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
+        format.html { redirect_to @sale, notice: 'Venta editada satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit }
@@ -59,9 +65,10 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
+    @nombre = 'Eliminar venta'
     @sale.destroy
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
+      format.html { redirect_to sales_url, notice: 'Venta eliminada satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

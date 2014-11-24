@@ -1,4 +1,7 @@
 class Material < ActiveRecord::Base
+
+	validates :available, numericality: { greater_than: 0, message: 'La cantidad debe ser mayor que 0' }
+	validates :name, presence: {presence: true, message: 'Debe contener un nombre'}
 	has_many :products_materials
 	has_many :products, through: :products_materials
 
@@ -16,16 +19,4 @@ class Material < ActiveRecord::Base
 		end
 	end
 
-	def self.to_pdf
-		  # Load the html to convert to PDF
-    html = File.read("app/views/materials/index.html.erb")
-    # Create a new kit and define page size to be US letter
-    kit = PDFKit.new(html, :page_size => 'Letter')
-    # Load our stylesheet into the kit to have colors & formatting
-    kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/bootstrap.min.css"
-    # Save the html to a PDF file
-    kit.to_file("app/assets/materials.pdf")
-    # Render the html
-    render :text => html
-end
 end
