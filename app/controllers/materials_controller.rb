@@ -10,11 +10,14 @@ class MaterialsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @materials.to_csv }
+
     end
 
     g = Gruff::Bar.new('500x300')
 
+
     lista = Material.order("available ASC")
+
 
     first = lista[0]
     firstname = first.read_attribute 'name'
@@ -51,10 +54,31 @@ class MaterialsController < ApplicationController
       :colors => %w(#D65433 #DAA520 #B7B43F #5F9EA0),
       :marker_color => 'grey',
       :background_colors => ['white', 'white', :top_bottom]
-    }
+
+      }
+
     g.write('app/assets/images/test.png')
 
   end
+
+  def pdf
+
+      # Load the html to convert to PDF
+    html = File.read("app/views/materials/index.html.erb")
+    # Create a new kit and define page size to be US letter
+    kit = PDFKit.new(html, :page_size => 'Letter')
+    # Load our stylesheet into the kit to have colors & formatting
+    kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/bootstrap.min.css"
+    # Save the html to a PDF file
+    kit.to_file("app/assets/materials")
+    # Render the html
+
+
+   send_file 'app/assets/materials.pdf', :type=>"application/pdf", :x_sendfile=>true
+
+
+
+end
 
   # GET /materials/1s
   # GET /materials/1.json
@@ -78,7 +102,7 @@ class MaterialsController < ApplicationController
 
     respond_to do |format|
       if @material.save
-        format.html { redirect_to @material, notice: 'Material was successfully created.' }
+        format.html { redirect_to @material, notice: 'El inventario ha sido actualizado.' }
         format.json { render :show, status: :created, location: @material }
       else
         format.html { render :new }
@@ -92,7 +116,7 @@ class MaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @material.update(material_params)
-        format.html { redirect_to @material, notice: 'Material was successfully updated.' }
+        format.html { redirect_to @material, notice: 'El inventario ha sido actualizado.' }
         format.json { render :show, status: :ok, location: @material }
       else
         format.html { render :edit }
@@ -106,7 +130,7 @@ class MaterialsController < ApplicationController
   def destroy
     @material.destroy
     respond_to do |format|
-      format.html { redirect_to materials_url, notice: 'Material was successfully destroyed.' }
+      format.html { redirect_to materials_url, notice: 'El elemento ha sido eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

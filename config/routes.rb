@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   get '/logout' => 'application#logout'
 
+  get '/pdf' => 'materials#pdf'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
