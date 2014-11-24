@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
 
-	validates :available, numericality: { greater_than: 0 }
-
+	
 	has_many :product_sales	
 	has_many :sales, through: :product_sales
 
