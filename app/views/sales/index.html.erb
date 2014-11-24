@@ -15,7 +15,11 @@
       <tr>
         <td><%= sale.saleDate %></td>
         <td><%= sale.client.name %></td>
-       
+        <td><%= 
+          @total = Product.select("sales.id, sum(products.price) as total_price").joins(:product_sales, :sales).where("product_sales.sale_id = ?", sale.id).group("sales.id")
+          puts @total.product_id
+          
+         %></td>
         <td><%= link_to 'Detalles', sale %></td>
         <td><%= link_to 'Editar', edit_sale_path(sale) %></td>
         <td><%= link_to 'Eliminar', sale, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
